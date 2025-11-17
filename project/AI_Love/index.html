@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"愈小智"心理健康咨询问答系统</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header class="header">
+        <!-- 替换为心理健康相关图标：如心灵、握手、阳光等 -->
+        <img src="./sunshine.png" alt="心灵关怀" class="header-img-left">
+        <span class="main-title">"愈小智"心理健康咨询问答系统</span>
+        <img src="./hand.png" alt="支持陪伴" class="header-img-right">
+        <p>在这里可以倾诉你的困扰，获取专业的心理支持与建议</p>
+    </header>
+
+    <main>
+        <!-- 输出区域（在上方） -->
+        <section class="output-section">
+            <div id="result-container" class="result-container"></div>
+        </section>
+    
+        <!-- 输入区域容器（在底部，横向排列） -->
+        <div class="input-container">
+            <div class="input-with-icon">
+                <div class="user-icon"></div>
+                <textarea id="user-input" class="input-field" placeholder="请描述你的感受或困扰...（例如：最近总是失眠，该怎么办？）"></textarea>
+            </div>
+            <button type="button" id="submit-button" class="submit-button">发送咨询</button>
+        </div>
+    
+        <div id="top-alert" class="top-alert" style="display:none;">请输入你的感受或困扰哦</div>
+    </main>
+
+    <!-- 引入外部JS文件 -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
