@@ -8,6 +8,25 @@ function showAlert() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    const isWeChat = navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1;
+    if (isWeChat) {
+        // 微信中特殊处理：重新设置viewport
+        const metaViewport = document.querySelector('meta[name="viewport"]');
+        
+        // 确保initial-scale=1.0且禁用缩放(防止微信自动放大)
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no');
+        
+        // 修复微信中输入框聚焦后页面放大问题
+        document.querySelectorAll('input, textarea').forEach((el) => {
+            el.addEventListener('focus', () => {
+                window.scrollTo(0, 0); // 输入框聚焦时强制页面顶部对齐
+            });
+        });
+    }
+
+
+
     let session_id = localStorage.getItem('session_id'); // 从本地存储读取
     if (!session_id) {
         // 首次访问，调用后端接口获取session_id
