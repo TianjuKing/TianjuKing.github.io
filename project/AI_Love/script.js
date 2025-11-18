@@ -8,6 +8,18 @@ function showAlert() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    let session_id = localStorage.getItem('session_id'); // 从本地存储读取
+    if (!session_id) {
+        // 首次访问，调用后端接口获取session_id
+        fetch('http://10.102.33.100:8080/api/get_session')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    session_id = data.session_id;
+                    localStorage.setItem('session_id', session_id); // 存储到本地
+                }
+            });
+    }
     const resultContainer = document.getElementById('result-container');
     const outputSection = document.querySelector('.output-section'); 
     const loadingIndicator = document.createElement('div');
@@ -49,6 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputValue = userInput.value.trim();
         userInput.value = '';
 
+
+        if (!session_id) {
+            showAlert(); // 可修改alert文案为“请稍候，正在初始化会话...”
+            return;
+        }
+
         if (!inputValue) {
             showAlert();
             return;
@@ -75,7 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ question: inputValue })
+                body: JSON.stringify({ 
+                    question: inputValue,
+                    session_id: session_id  // 新增这一行
+                })
             });
 
             if (!response.ok) {
@@ -166,9 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 绑定提交事件（点击按钮或按Enter）
-    submitButton.addEventListener('click', handleUserInput);
+    submitButton.addEventListener('click', () => {
+        if (session_id) handleUserInput(event);
+        else showAlert(); // 提示“会话初始化中，请稍候”
+    });
+    
     userInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
+        if (event.key === 'Enter' && !event.shiftKey && session_id) {
             handleUserInput(event);
         }
     });
