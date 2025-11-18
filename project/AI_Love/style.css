@@ -155,3 +155,93 @@ main {
     border-radius: 4px;
     z-index: 1000;
 }
+
+@media (max-width: 768px) {
+    /* 1. 头部区域：缩小图标和标题 */
+    .header {
+        padding: 15px 10px;
+    }
+    .header-img-left {
+        width: 50px !important;
+        height: 50px !important;
+        left: 10px !important;
+    }
+    .header-img-right {
+        width: 30px !important;
+        height: 30px !important;
+        right: 10px !important;
+    }
+    .header .main-title {
+        font-size: 18px !important;
+    }
+    .header p {
+        font-size: 12px !important;
+        margin-top: 8px !important;
+    }
+
+    /* 2. 主内容区：占满屏幕，减小内边距 */
+    main {
+        max-width: 100% !important;
+        padding: 10px !important;
+        min-height: calc(100vh - 100px) !important;
+    }
+
+    /* 3. 输入区域：手机端改为纵向排列（输入框在上，按钮在下） */
+    .input-container {
+        flex-direction: column !important;
+        align-items: stretch !important; /* 子元素占满宽度 */
+        gap: 10px !important;
+        padding: 5px 0 !important;
+    }
+
+    /* 4. 用户图标：缩小尺寸，避免占用过多空间 */
+    .user-icon {
+        width: 40px !important;
+        height: 40px !important;
+        top: 15px !important;
+    }
+
+    /* 5. 输入框：适配手机宽度，调整内边距和高度 */
+    .input-field {
+        padding: 12px 15px 12px 50px !important; /* 对应图标尺寸调整左内边距 */
+        min-height: 80px !important;
+        font-size: 14px !important;
+    }
+
+    /* 6. 发送按钮：占满宽度，高度自适应（取消固定95px） */
+    .submit-button {
+        width: 100% !important;
+        height: auto !important;
+        padding: 14px 0 !important;
+        font-size: 15px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* 7. 输出区域：调整高度和内边距，适配手机屏幕 */
+    .output-section {
+        max-height: 40vh !important; /* 占手机屏幕40%高度，避免超出 */
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* 8. 消息和图标：缩小尺寸，保证显示协调 */
+    .result-container {
+        font-size: 14px !important;
+    }
+    .icon {
+        width: 20px !important;
+        height: 20px !important;
+        margin-right: 6px !important;
+    }
+
+    /* 9. 提示框：适配手机尺寸 */
+    .processing-message {
+        padding: 15px 20px !important;
+        font-size: 14px !important;
+    }
+    .top-alert {
+        padding: 8px 15px !important;
+        font-size: 13px !important;
+        top: 15px !important;
+    }
+}
