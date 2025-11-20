@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
+    localStorage.removeItem('session_id'); 
+    // 强制清除本地存储的旧session_id（关键！每次打开都重置）
 
     let session_id = localStorage.getItem('session_id'); // 从本地存储读取
     if (!session_id) {
