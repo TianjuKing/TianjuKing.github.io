@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <title>"愈小智"心理健康咨询问答系统</title>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="./style.css?v=20251118">
+    <!-- 添加图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- 左侧侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="./player.png" alt="愈小智" class="sidebar-avatar">
+                <div class="sidebar-title">愈小智</div>
+                    <!-- 新增收起/展开按钮 -->
+                <button class="toggle-sidebar-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+    <!-- 历史对话列表（JS动态生成） -->
+                <div class="history-section">
+                    <h3 class="history-title">历史对话</h3>
+                    <ul class="history-list" id="history-list">
+                        <!-- 对话项将通过JS动态添加 -->
+                    </ul>
+                    <!-- 新增对话按钮 -->
+                    <button class="new-chat-btn" id="new-chat-btn">
+                        <i class="fas fa-plus"></i>
+                        <span class="new-chat-text">新对话</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+    <main class="main-content">
+        <!-- 在<main class="main-content">标签内最上方添加 -->
+        <!-- 语音模式容器 -->
+        <div class="voice-mode-container" id="voice-mode-container">
+            <img src="./player.png" alt="愈小智语音助手" class="voice-avatar" id="voice-avatar">
+            <div class="voice-instructions">
+                长按下方头像说话，松开后发送
+            </div>
+            <div class="audio-visualizer" id="audio-visualizer">
+                <div class="audio-bars">
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                    <div class="audio-bar"></div>
+                </div>
+                <div class="audio-status-text" id="audio-status-text">正在倾听你的心声</div>
+            </div>
+            <button class="back-to-text-btn" id="back-to-text-btn">
+                <i class="fas fa-keyboard"></i> 回到文字模式
+            </button>
+        </div>
+        <!-- 输出区域（在上方） -->
+        <section class="output-section">
+            <div id="result-container" class="result-container">
+                <!-- 可以在这里添加初始对话示例 -->
+                <div class="message ai-message">
+                    <div class="message-icon">
+                        <img src="./player.png" alt="AI助手" class="ai-avatar">
+                    </div>
+                    <div class="message-content">
+                        你好！我是愈小智，你的心理健康助手。有什么我可以帮助你的吗？
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 输入区域容器（在底部，横向排列） -->
+        <div class="input-container">
+            <div class="input-with-icon">
+                <div class="user-icon">
+                    <img src="./love.png" alt="用户图标" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                </div>
+                <textarea id="user-input" class="input-field" placeholder="请描述你的感受或困扰...（例如：最近总是失眠，该怎么办？）"></textarea>
+            </div>
+            <div class="input-actions">
+                <button type="button" id="submit-button" class="submit-button">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>发送</span>
+                </button>
+                <button class="voice-toggle-btn" id="voice-toggle-btn">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="top-alert" class="top-alert" style="display:none;">请输入你的感受或困扰哦</div>
+    </main>
+    </div>
+    <!-- 引入外部JS文件 -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
